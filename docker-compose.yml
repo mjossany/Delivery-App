@@ -2,7 +2,7 @@ version: '3.9'
 services:
   front:
     build: ./front-end
-    container_name: delivery-app-client
+    container_name: delivery-app-front
     ports:
       - 3000:3000
     depends_on:
@@ -11,7 +11,7 @@ services:
       - ./front-end/src:/app_front/src
   back:
     build: ./back-end
-    container_name: delivery-app-api
+    container_name: delivery-app-back
     ports:
       - 3001:3001
     depends_on:
@@ -24,7 +24,7 @@ services:
       - MYSQL_NAME=delivery-app-db
       - MYSQL_PORT=3306
     volumes:
-      - ./back-end:/app_back
+      - ./back-end/src:/app_back/src
   db:
     platform: linux/x86_64
     image: mysql:5.7

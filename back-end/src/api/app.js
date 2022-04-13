@@ -1,13 +1,10 @@
 const express = require('express');
+const { json } = require('body-parser');
 
 const app = express();
 
-function handleHelloWorldRequest(req, res) {
-  res.status(200).send('Hello World!');
-}
+app.use(json());
 
-app.get('/', handleHelloWorldRequest);
+app.get('/', (_req, res) => res.status(200).send('Hello World'));
 
-app.listen(3001, () => {
-  console.log('Aplicação ouvindo na porta 3001');
-});
+module.exports = app;
