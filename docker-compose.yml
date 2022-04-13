@@ -1,0 +1,70 @@
+# version: '3.9'
+# services:
+#   db:
+#     platform: linux/x86_64
+#     image: mysql
+#     container_name: delivery-app-db
+#     ports:
+#       - 3002:3306
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=123456
+#     restart: 'always'
+#     cap_add:
+#       - SYS_NICE
+#   api:
+#     build: ./api
+#     container_name: delivery-app-api
+#     ports:
+#       - 3001:3001
+#     environment:
+#       - PORT=3001
+#       - MYSQL_USER=root
+#       - MYSQL_ROOT_PASSWORD=123456
+#       - MYSQL_HOST=db
+#       - MYSQL_NAME=DELIVERY_APP_DB
+#       - MYSQL_PORT=3306
+#   client:
+#     build: ./client
+#     container_name: delivery-app-client
+#     ports:
+#       - 3000:3000
+version: '3.9'
+services:
+  front:
+    build: ./front-end
+    container_name: delivery-app-client
+    ports:
+      - 3000:3000
+    depends_on:
+      - back
+    volumes:
+      - ./front-end/src:/app_front/src
+  back:
+    build: ./back-end
+    container_name: delivery-app-api
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+    environment:
+      - PORT=3001
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=jossa
+      - MYSQL_HOST=db
+      - MYSQL_NAME=delivery-app-db
+      - MYSQL_PORT=3306
+    volumes:
+      - ./back-end:/app_back
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: delivery-app-db
+    ports:
+      - 3002:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=jossa
+    restart: 'always'
+    cap_add:
+      - SYS_NICE
+    # volumes:
+    #   - ./api/mysql-db:/var/lib/mysql
