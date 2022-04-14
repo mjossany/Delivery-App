@@ -1,4 +1,4 @@
-const http = require('http').createServer(require('./src/api/app'));
+const http = require('http').createServer(require('./app'));
 
 const { PORT = 3001 } = process.env;
 
