@@ -1,9 +1,9 @@
 import React from 'react';
-import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
