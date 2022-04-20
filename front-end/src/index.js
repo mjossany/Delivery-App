@@ -1,9 +1,10 @@
 import React from 'react';
-import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
+import GlobalStyle from './styles/GlobalStyles';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -11,6 +12,7 @@ const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <Router>
+      <GlobalStyle />
       <App />
     </Router>
   </React.StrictMode>,
