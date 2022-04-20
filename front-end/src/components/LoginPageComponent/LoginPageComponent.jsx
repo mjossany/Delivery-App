@@ -57,7 +57,7 @@ function LoginPageComponent() {
             {' '}
             Or
             {' '}
-            <a href="register-now">register now!</a>
+            <a href="register-now">Register Now!</a>
           </LoginForm.Item>
         </LoginForm>
       </LoginPageContainer>
